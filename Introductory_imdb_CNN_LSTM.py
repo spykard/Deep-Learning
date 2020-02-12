@@ -85,7 +85,7 @@ x_test = sequence.pad_sequences(x_test, maxlen=config.maxlen)
 print(f"x_train shape: {x_train.shape}")
 print(f"x_test shape: {x_test.shape}")
 
-# Model Training
+# Model Building
 print(f"\nBuilding model...")
 model = Sequential()
 model.add(Embedding(config.max_features, config.embedding_size, input_length=config.maxlen))
@@ -103,6 +103,7 @@ model.compile(loss=config.loss,
               optimizer=config.optimizer,
               metrics=[config.eval_metrics])
 
+# Model Training
 print(f"Training...")
 model.fit(x_train, y_train,
           batch_size=config.batch_size,
@@ -112,5 +113,5 @@ model.fit(x_train, y_train,
 
 # Model Evaluation
 score, acc = model.evaluate(x_test, y_test, batch_size=config.batch_size)
-print(f"Test score: {score*100:.5f}")
+print(f"Test loss: {score*100:.5f}")
 print(f"Test accuracy: {acc*100:.5f}")
