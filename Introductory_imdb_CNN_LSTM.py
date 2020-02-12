@@ -48,7 +48,7 @@ np.random.seed(config.random_state)  # Numpy's seed
 tf.set_random_seed(config.random_state)  # Tensorflow's seed
 ##                 ##
 
-## RTX GPU MEMORY BUG FIX & Must also be placed at the top of the code else it doesn't work ##
+## RTX GPU Memory BUG Fix & Must also be placed at the top of the code else it doesn't work ##
 from keras.backend import tensorflow_backend as K
 tf_config = tf.compat.v1.ConfigProto()
 tf_config.gpu_options.allow_growth = True                     # dynamically grow the memory used on the GPU
@@ -108,7 +108,7 @@ model.fit(x_train, y_train,
           batch_size=config.batch_size,
           epochs=config.epochs,
           validation_data=(x_test, y_test),
-          callbacks=[WandbCallback(save_model=False, data_type=None)])  # can also operate similarly to ModelCheckpoint
+          callbacks=[WandbCallback(monitor="val_loss", mode="auto", save_weights_only=False, save_model=False)])  # can also operate similarly to ModelCheckpoint as well as a validator for plotting
 
 # Model Evaluation
 score, acc = model.evaluate(x_test, y_test, batch_size=config.batch_size)
