@@ -8,3 +8,5 @@ python train.py \
   --batch_size 100 \
   --num_epochs 300 \
   --output_dir $OUTPUTDIR
+
+python train.py --model "resnet18" --batch_size 100 --num_epochs 300 --dataset FER2013
