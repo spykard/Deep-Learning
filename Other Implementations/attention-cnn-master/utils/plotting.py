@@ -46,7 +46,7 @@ def plot_attention_layer(model, layer_idx, width, ax=None):
     if ax is None:
         fig, ax = plt.subplots()
 
-    attention = model.encoder.layer[layer_idx].attention.self
+    attention = model.module.encoder.layer[layer_idx].attention.self  # MAJOR FIX FOR DATAPARALLEL USE
     attention_probs = attention.get_attention_probs(width + 2, width + 2)
 
     contours = np.array([0.9, 0.5])
@@ -98,7 +98,7 @@ def plot_attention_layer(model, layer_idx, width, ax=None):
 
 def plot_attention_positions_all_layers(model, width, tensorboard_writer=None, global_step=None):
 
-    for layer_idx in range(len(model.encoder.layer)):
+    for layer_idx in range(len(model.module.encoder.layer)):  # MAJOR FIX FOR DATAPARALLEL USE
         fig, ax = plt.subplots()
         plot_attention_layer(model, layer_idx, width, ax=ax)
 

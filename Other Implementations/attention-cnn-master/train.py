@@ -11,6 +11,7 @@ import enum
 from enum import Enum
 import argparse
 from tensorboardX import SummaryWriter
+from torchsummary import summary
 from collections import OrderedDict
 from termcolor import colored
 import tabulate
@@ -27,7 +28,7 @@ import utils.accumulators
 
 # fmt: off
 config = OrderedDict(
-    dataset="FER2013",
+    dataset="Cifar10",
     model="bert",
     load_checkpoint_file=None,
     no_cuda=False,
@@ -131,6 +132,16 @@ def main():
     # `config` dictionary.
     training_loader, test_loader = get_dataset(test_batch_size=config["batch_size"])
     model = get_model(device)
+
+    count = 0
+    for i, data in enumerate(training_loader, 0):
+        if count == 1:
+            break
+        # get the inputs
+        inputs, labels = data
+        inputs = np.array(inputs)
+        print("Input Shape", inputs.shape)
+        count += 1
 
     print_parameters(model)
     if config["only_list_parameters"]:
@@ -343,7 +354,7 @@ def log_metric(name, values, tags):
     print("{name}: {values} ({tags})".format(name=name, values=values, tags=tags))
 
 
-def get_dataset(test_batch_size=100, shuffle_train=True, num_workers=2, data_root="./data"):
+def get_dataset(test_batch_size=100, shuffle_train=True, num_workers=0, data_root="./data"):
     """
     Create dataset loaders for the chosen dataset
     :return: Tuple (training_loader, test_loader)
@@ -372,18 +383,21 @@ def get_dataset(test_batch_size=100, shuffle_train=True, num_workers=2, data_roo
     elif config["dataset"] == "FER2013":  
         cut_size = 44
         transform_train = torchvision.transforms.Compose([
-            torchvision.transforms.RandomCrop(44),
-            torchvision.transforms.RandomHorizontalFlip(),
+            # torchvision.transforms.Resize(cut_size),
+            # torchvision.transforms.RandomCrop(cut_size),
+            # torchvision.transforms.RandomHorizontalFlip(),
             torchvision.transforms.ToTensor(),
         ])
 
         transform_test = torchvision.transforms.Compose([
-            torchvision.transforms.TenCrop(cut_size),
-            torchvision.transforms.Lambda(lambda crops: torch.stack([torchvision.transforms.ToTensor()(crop) for crop in crops])),
+            #torchvision.transforms.Resize(cut_size),
+            # torchvision.transforms.TenCrop(cut_size),
+            # torchvision.transforms.Lambda(lambda crops: torch.stack([torchvision.transforms.ToTensor()(crop) for crop in crops])),
+            torchvision.transforms.ToTensor(),
         ])
 
         trainset = fer.FER2013(split = 'Training', transform=transform_train)
-        training_loader = torch.utils.data.DataLoader(trainset, batch_size=config["batch_size"], shuffle=True, num_workers=num_workers)
+        training_loader = torch.utils.data.DataLoader(trainset, batch_size=config["batch_size"], shuffle=shuffle_train, num_workers=num_workers)
         PublicTestset = fer.FER2013(split = 'PublicTest', transform=transform_test)
         PublicTestloader = torch.utils.data.DataLoader(PublicTestset, batch_size=test_batch_size, shuffle=False, num_workers=num_workers)
         # PrivateTestset = fer.FER2013(split = 'PrivateTest', transform=transform_test)
@@ -490,6 +504,8 @@ def get_model(device):
         num_classes = 100
     elif config["dataset"] == "Cifar10":
         num_classes = 10
+    elif config["dataset"] == "FER2013":
+        num_classes = 7
 
     model = {
         # "vgg11": lambda: models.VGG("VGG11", num_classes, batch_norm=False),
@@ -528,6 +544,8 @@ def print_parameters(model):
     if config["only_list_parameters"]:
         # Print detailed number of parameters
         print(tabulate.tabulate(trainable_parameters))
+
+    #summary(model, input_size=(3, 44, 44))
 
 
 def print_flops(model):
