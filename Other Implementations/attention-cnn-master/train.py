@@ -133,6 +133,7 @@ def main():
     training_loader, test_loader = get_dataset(test_batch_size=config["batch_size"])
     model = get_model(device)
 
+    # Print Input Shape
     count = 0
     for i, data in enumerate(training_loader, 0):
         if count == 1:
@@ -381,16 +382,16 @@ def get_dataset(test_batch_size=100, shuffle_train=True, num_workers=0, data_roo
 
         return training_loader, test_loader
     elif config["dataset"] == "FER2013":  
-        cut_size = 44
+        cut_size = 32  # FOR SOME WEIRD REASON REQUIRES EXACTLY 32
         transform_train = torchvision.transforms.Compose([
-            # torchvision.transforms.Resize(cut_size),
+            torchvision.transforms.Resize(cut_size),
             # torchvision.transforms.RandomCrop(cut_size),
             # torchvision.transforms.RandomHorizontalFlip(),
             torchvision.transforms.ToTensor(),
         ])
 
         transform_test = torchvision.transforms.Compose([
-            #torchvision.transforms.Resize(cut_size),
+            torchvision.transforms.Resize(cut_size),
             # torchvision.transforms.TenCrop(cut_size),
             # torchvision.transforms.Lambda(lambda crops: torch.stack([torchvision.transforms.ToTensor()(crop) for crop in crops])),
             torchvision.transforms.ToTensor(),
