@@ -1,5 +1,4 @@
-''' Fer2013 Dataset class'''
-'''https://github.com/WuJie1010/Facial-Expression-Recognition.Pytorch/blob/master/mainpro_FER.py'''
+''' Fer2013 Dataset class, https://github.com/WuJie1010/Facial-Expression-Recognition.Pytorch/blob/master/mainpro_FER.py'''
 
 from __future__ import print_function
 from PIL import Image
@@ -20,19 +19,23 @@ class FER2013(data.Dataset):
     def __init__(self, split='Training', transform=None):
         self.transform = transform
         self.split = split  # training set or test set
-        self.data = h5py.File('./data/data.h5', 'r', driver='core')
+        self.data = h5py.File('./data/fer2013.h5', 'r', driver='core')
         # now load the picked numpy arrays
         if self.split == 'Training':
             self.train_data = self.data['Training_pixel']
             self.train_labels = self.data['Training_label']
             self.train_data = np.asarray(self.train_data)
             self.train_data = self.train_data.reshape((28709, 48, 48))
+            # # TEMPORARY DATASET REDUCE
+            # self.train_data = self.train_data[0:200,:,:]
 
         elif self.split == 'PublicTest':
             self.PublicTest_data = self.data['PublicTest_pixel']
             self.PublicTest_labels = self.data['PublicTest_label']
             self.PublicTest_data = np.asarray(self.PublicTest_data)
             self.PublicTest_data = self.PublicTest_data.reshape((3589, 48, 48))
+            # # TEMPORARY DATASET REDUCE
+            # self.PublicTest_data = self.PublicTest_data[0:200,:,:]
 
         else:
             self.PrivateTest_data = self.data['PrivateTest_pixel']
