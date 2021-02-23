@@ -15,3 +15,5 @@ python train.py \
   --use_gaussian_attention False \
   --num_keep_checkpoints 30 \
   --output_dir $OUTPUTDIR
+
+python train.py --num_hidden_layers 6 --num_attention_heads 9 --optimizer_cosine_lr True --optimizer_warmup_ratio 0.05 --batch_size 32 --num_epochs 300 --hidden_size 400 --use_learned_2d_encoding True --use_gaussian_attention False --num_keep_checkpoints 30
