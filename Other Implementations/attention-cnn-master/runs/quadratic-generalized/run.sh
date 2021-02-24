@@ -14,3 +14,5 @@ python train.py \
   --attention_isotropic_gaussian False \
   --num_keep_checkpoints 30 \
   --output_dir $OUTPUTDIR
+
+python train.py --num_hidden_layers 6 --num_attention_heads 9 --optimizer_cosine_lr True --optimizer_warmup_ratio 0.05 --batch_size 64 --num_epochs 300 --hidden_size 400 --attention_isotropic_gaussian False --num_keep_checkpoints 30 --dataset FER2013
