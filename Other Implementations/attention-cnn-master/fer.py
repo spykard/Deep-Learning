@@ -26,16 +26,16 @@ class FER2013(data.Dataset):
             self.train_labels = self.data['Training_label']
             self.train_data = np.asarray(self.train_data)
             self.train_data = self.train_data.reshape((28709, 48, 48))
-            # # TEMPORARY DATASET REDUCE
-            # self.train_data = self.train_data[0:200,:,:]
+            # TEMPORARY DATASET REDUCE
+            self.train_data = self.train_data[0:4000,:,:]
 
         elif self.split == 'PublicTest':
             self.PublicTest_data = self.data['PublicTest_pixel']
             self.PublicTest_labels = self.data['PublicTest_label']
             self.PublicTest_data = np.asarray(self.PublicTest_data)
             self.PublicTest_data = self.PublicTest_data.reshape((3589, 48, 48))
-            # # TEMPORARY DATASET REDUCE
-            # self.PublicTest_data = self.PublicTest_data[0:200,:,:]
+            # TEMPORARY DATASET REDUCE
+            self.PublicTest_data = self.PublicTest_data[0:2000,:,:]
 
         else:
             self.PrivateTest_data = self.data['PrivateTest_pixel']
