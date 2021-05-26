@@ -1,8 +1,8 @@
 # Deep-Learning-Thesis
 
-# Text Deep Learning
+## Text Deep Learning
 
-## Dependencies
+### Dependencies
 
 
 ```
@@ -28,7 +28,7 @@ gensim
 seaborn
 ```
 
-## Guide
+### Running the Model
 
 1. Run the .ipynb file directly on [Google Colab](https://colab.research.google.com/). Ready to go with support for easy parameter tuning.  
 2. Alternatively, load the .ipynb file on a local setup featuring Jupyter Notebook and the aforementioned Dependencies.
