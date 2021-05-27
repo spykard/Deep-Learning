@@ -15,6 +15,8 @@ def read_URL(url,destination):
 	if destination is None:
 		log.error("Destination is not specified when downloading data",error=True)
 
+	print("Currently attempting to download:", url)
+
 	# print(destination)
 	# #destination = "cmumosei_raw;/http://immortal.multicomp.cs.cmu.edu/CMU-MOSEI/language/CMU_MOSEI_TimestampedWords.csd"
 	# print(destination.rsplit(os.sep,1))
