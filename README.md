@@ -26,7 +26,7 @@ Code for the papers:
 
 ## Introduction
 
-This work we studies the field of Emotion Recognition in-depth. The use of deep learning techniques in the fields of **Textual and Facial Emotion Recognition** skyrocketed the performance of classification methods and are the main direction that is currently pursued by researchers, introducing a variety of challenges. In terms of the methodology proposed in this work, a wide variety of architectures and approaches are implemented, leading to different models for the text and the image aspect of the system.
+This work studies the field of Emotion Recognition in-depth. The use of deep learning techniques in the fields of **Textual and Facial Emotion Recognition** skyrocketed the performance of classification methods and are the main direction that is currently pursued by researchers, introducing a variety of challenges. In terms of the methodology proposed in this work, a wide variety of architectures and approaches are implemented, leading to different models for the text and the image aspect of the system.
 
 Then, the field of **Multimodal Emotion Recognition** is presented, including its theory and literature. The main goal is to realize an end-to-end deep learning pipeline, in order to address the problem of understanding human emotions and improve the accuracy over the traditional standalone models. An important aspect of the field that is explored is the fusion of modalities which is often performed through a fusion at the feature and/or decision-level. The task at hand is supervised classification. Two additional topics showcased in this work are attention mechanisms and a systematic review of the available datasets in the Emotion Recognition domain.
 
