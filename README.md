@@ -2,13 +2,11 @@
 
 Code for the papers:  
 
+[Facial Expression Recognition Using Deep Learning Methods](https://link.springer.com/chapter/10.1007/978-3-030-92317-4_13) (Springer 2022).
+
 [Examining Attention Mechanisms in Deep Learning Models for Sentiment Analysis](https://www.mdpi.com/2076-3417/11/9/3883) (AppSci 2021).
 
-(Under Review)
-
-(Under Review)
-
-(Under Review)
+[Multimodal Emotion Recognition Using Deep Learning Techniques: A novel System for Real-World Emotion Recognition](http://hdl.handle.net/10889/15802) (Thesis).
 
 ## Getting Started
 
@@ -132,6 +130,15 @@ Refer to the Citation Papers of this work.
 Please cite this work using the first paper below:
 
 ```
+@inproceedings{kardakis2021facial,
+  title={Facial Expression Recognition Using Deep Learning Methods},
+  author={Kardakis, Spyridon and Perikos, Isidoros and Grivokostopoulou, Foteini and Paraskevas, Michael},
+  booktitle={International Conference on Software Engineering, Artificial Intelligence, Networking and Parallel/Distributed Computing},
+  pages={174--188},
+  year={2021},
+  organization={Springer}
+}
+
 @article{kardakis2021examining,
   title={Examining Attention Mechanisms in Deep Learning Models for Sentiment Analysis},
   author={Kardakis, Spyridon and Perikos, Isidoros and Grivokostopoulou, Foteini and Hatzilygeroudis, Ioannis},
@@ -142,12 +149,6 @@ Please cite this work using the first paper below:
   year={2021},
   publisher={Multidisciplinary Digital Publishing Institute}
 }
-
-(Under Review)
-
-(Under Review)
-
-(Under Review)
 ```
 
 ## Credits
